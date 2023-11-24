@@ -1,6 +1,20 @@
 <?php
 session_start();
 require 'database.php';
+
+// Check if the admin is not logged in, redirect to admin.php
+if (!isset($_SESSION["admin"])) {
+    header("Location: admin.php");
+    exit();
+}
+
+// Check if the logout action is triggered
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    // Destroy the session and redirect to admin.php
+    session_destroy();
+    header("Location: admin.php");
+    exit();
+}
 ?>
 
 <!doctype html>
@@ -70,6 +84,9 @@ require 'database.php';
                             </tbody>
                         </table>
 
+                    </div>
+                    <div class="card-footer">
+                        <a href="admindisplay.php?action=logout" class="btn btn-danger float-end">Logout</a>
                     </div>
                 </div>
             </div>
