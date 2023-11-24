@@ -1,0 +1,39 @@
+body {
+    padding: 50px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+/* Style for login and register buttons */
+.form-btn input {
+    width: 100%;
+}
+
+/* Add some spacing between the buttons and the registration/login link */
+.form-btn,
+div {
+    margin-top: 20px;
+}
+
+/* Styling for registration/login links */
+div a {
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff; /* Change the color as desired */
+    margin-top: 10px; /* Adjust the spacing */
+    font-weight: bold; /* Add bold font weight */
+}
+
+div a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Change the hover color as desired */
+}
