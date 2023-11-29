@@ -18,8 +18,9 @@ $query = "SELECT * FROM donations";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
+    echo "<div class='donation-report-container'>";
     echo "<h2>Donation Report</h2>";
-    echo "<table border='1'>
+    echo "<table class='donation-table'>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -41,7 +42,26 @@ if (mysqli_num_rows($result) > 0) {
     }
 
     echo "</table>";
-    echo "<button onclick='printReport()'>Print Report</button>";
+
+    // Display the percentage section
+    echo "<div class='percentage-section'>";
+    echo "<h3>Percentage of Each Donation</h3>";
+
+    $totalCount = mysqli_num_rows($result);
+
+    // Reset the result set to the beginning
+    mysqli_data_seek($result, 0);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $percentage = ($totalCount > 0) ? (1 / $totalCount) * 100 : 0;
+        echo "<p>{$row['donation_type']}: {$percentage}%</p>";
+    }
+
+    echo "</div>";
+
+    echo "<button class='print-button' onclick='printReport()'>Print Report</button>";
+    echo "<a href='admindisplay.php' class='back-button'>Back</a>";
+    echo "</div>";
 } else {
     echo "No donation records found";
 }

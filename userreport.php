@@ -18,6 +18,7 @@ $result = mysqli_query($conn, $query);
 
 // Check if there are any registrations
 if (mysqli_num_rows($result) > 0) {
+    echo "<div class='container'>";
     echo "<h2>User Registration Report</h2>";
     echo "<table border='1'>
             <tr>
@@ -47,9 +48,17 @@ if (mysqli_num_rows($result) > 0) {
         // Add any specific logic for printing here
         echo "<script>window.print();</script>";
     }
+
+    // Add a back button
+    echo "<a href='admindisplay.php' class='back-button'>Back</a>";
+
+    echo "</div>";
 } else {
     echo "No user registrations found";
 }
 
 mysqli_close($conn);
 ?>
+</body>
+
+</html>

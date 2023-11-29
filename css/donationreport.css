@@ -32,8 +32,8 @@ th {
     color: #333;
 }
 
-button {
-    display: block;
+button, .back-button {
+    display: inline-block;
     margin: 20px auto;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -42,8 +42,21 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    text-decoration: none;
 }
 
-button:hover {
+button:hover, .back-button:hover {
     background-color: #45a049;
+}
+
+.percentage-tab {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.percentage-tab h3 {
+    color: #333;
 }

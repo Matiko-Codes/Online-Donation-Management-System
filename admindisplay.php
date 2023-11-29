@@ -8,16 +8,15 @@ if (!isset($_SESSION["admin"])) {
     exit();
 }
 
-// Check if the logout action is triggered
-if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-    // Destroy the session and redirect to admin.php
+// Check if the logout form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout_admin'])) {
     session_destroy();
     header("Location: admin.php");
     exit();
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -50,13 +49,13 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                     <th>ID</th>
                                     <th>Full Name</th>
                                     <th>Email</th>
-                                    <th>Password</th>
+                                    <!-- Removed the Password column -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM users";
+                                $query = "SELECT id, full_name, email FROM users";
                                 $query_run = mysqli_query($conn, $query);
 
                                 if (mysqli_num_rows($query_run) > 0) {
@@ -66,7 +65,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                             <td><?= $register['id']; ?></td>
                                             <td><?= $register['full_name']; ?></td>
                                             <td><?= $register['email']; ?></td>
-                                            <td><?= $register['password']; ?></td>
                                             <td>
                                                 <a href="userreport.php?id=<?= $register['id']; ?>" class="btn btn-info btn-sm">View</a>
                                                 <a href="useredit.php?id=<?= $register['id']; ?>" class="btn btn-success btn-sm">Edit</a>
@@ -80,14 +78,18 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                 } else {
                                     echo "<h5> No Record Found </h5>";
                                 }
-                                    ?>
+                                ?>
                             </tbody>
                         </table>
 
                     </div>
                     <div class="card-footer">
-                        <a href="admindisplay.php?action=logout" class="btn btn-danger float-end">Logout</a>
+                        <form action="admin.php" method="post">
+                            <button type="submit" class="btn btn-danger float-end" name="logout_admin">Logout</button>
+                        </form>
+                        <a href="adminregister.php" class="btn btn-primary float-end">Register Admin</a>
                     </div>
+
                 </div>
             </div>
         </div>
